@@ -48,11 +48,4 @@ public class UserController {
         List<UserDTO> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
     }
-
-    @PostMapping
-    public ResponseEntity<?> registerUser(@RequestBody UserDTO userDTO) {
-        return ResponseEntity.ok(userService.save(userDTO));
-    }
 }
-
-

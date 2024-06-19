@@ -11,7 +11,17 @@ spring:
         hibernate:
           format_sql: true
     show-sql: true
-
+server:
+  port: 8080
 jwt:
   secret: 1232002
   expiration: 3600000 # 1 hour in milliseconds
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: alpha
+    tryItOutEnabled: true
+    validatorUrl: null
