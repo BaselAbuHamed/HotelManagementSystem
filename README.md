@@ -828,7 +828,7 @@ The API documentation can be found on SwaggerHub:
 ### Docker Image
 
 You can find the Docker image for this project on DockerHub:
-[DockerHub - HotelManagementSystem](https://hub.docker.com/repository/docker/yourdockerhubusername/hotel-management-system)
+[DockerHub - HotelManagementSystem](https://hub.docker.com/r/baselabuhamed/hotel_management_app)
 
 ## What We Learned
 
