@@ -4,6 +4,12 @@
 
 The Hotel Management System is designed to manage various aspects of hotel operations, including room bookings, check-ins, housekeeping, and more. This system provides a comprehensive API for managing hotel resources efficiently.
 
+### SwaggerHub API Documentation
+
+The API documentation can be found on SwaggerHub:
+
+[Hotel Management System API Documentation](https://app.swaggerhub.com/apis-docs/BASEL76ZIYAD24/Hotel-Management-System-API/1.0)
+
 ## Project Resources
 
 ### User
