@@ -12,7 +12,7 @@ The API documentation can be found on SwaggerHub:
 
 ## Project Resources
 
-### User
+## User
 - **GET /api/v1/users/{id}**
   - Description: Retrieve a user by their ID.
   - Parameters: 
@@ -64,7 +64,7 @@ The API documentation can be found on SwaggerHub:
     - `id` (Path Variable): The ID of the user to delete.
   - Response: `204 No Content`
 
-### Room
+## Room
 - **GET /api/v1/rooms/{id}**
   - Description: Retrieve a room by its ID.
   - Parameters:
@@ -117,7 +117,7 @@ The API documentation can be found on SwaggerHub:
     - `id` (Path Variable): The ID of the room to delete.
   - Response: `204 No Content`
 
-### Booking
+## Booking
 - **GET /api/v1/bookings/{id}**
   - Description: Retrieve a booking by its ID.
   - Parameters:
@@ -179,7 +179,7 @@ The API documentation can be found on SwaggerHub:
     - `id` (Path Variable): The ID of the booking to cancel.
   - Response: `204 No Content`
 
-### Housekeeping
+## Housekeeping
 - **GET /api/v1/housekeeping/{id}**
   - Description: Retrieve a housekeeping task by its ID.
   - Parameters:
@@ -235,7 +235,7 @@ The API documentation can be found on SwaggerHub:
     - `id` (Path Variable): The ID of the housekeeping task to delete.
   - Response: `204 No Content`
 
-### Payment Status
+## Payment Status
 - **GET /api/v1/paymentstatus/{id}**
   - Description: Retrieve a payment status by its ID.
   - Parameters:
@@ -279,45 +279,504 @@ The API documentation can be found on SwaggerHub:
     - `id` (Path Variable): The ID of the payment status to delete.
   - Response: `204 No Content`
 
-### Additional Resources
-- **BookingAddon**
-  - APIs for managing booking addons.
+## BookingAddon
+- **GET /api/v1/bookingaddons/{bookingId}/{addonId}**
+  - Description: Retrieve a booking addon by booking ID and addon ID.
+  - Parameters: 
+    - `bookingId` (Path Variable): The ID of the booking.
+    - `addonId` (Path Variable): The ID of the addon.
+  - Response: `BookingAddonDTO`
+  - Example Response:
+    ```json
+    {
+      "bookingId": 1,
+      "addonId": 2,
+      "addonName": "Breakfast",
+      "price": 15.0
+    }
+    ```
 
-- **CheckinCheckout**
-  - APIs for managing check-in and check-out processes.
+- **POST /api/v1/bookingaddons**
+  - Description: Create a new booking addon.
+  - Request Body: `BookingAddonDTO`
+  - Example Request:
+    ```json
+    {
+      "bookingId": 1,
+      "addonId": 2,
+      "addonName": "Breakfast",
+      "price": 15.0
+    }
+    ```
+  - Response: `BookingAddonDTO`
 
-- **Addon**
-  - APIs for managing addons.
+- **PUT /api/v1/bookingaddons/{bookingId}/{addonId}**
+  - Description: Update an existing booking addon.
+  - Parameters:
+    - `bookingId` (Path Variable): The ID of the booking.
+    - `addonId` (Path Variable): The ID of the addon.
+  - Request Body: `BookingAddonDTO`
+  - Example Request:
+    ```json
+    {
+      "bookingId": 1,
+      "addonId": 2,
+      "addonName": "Breakfast",
+      "price": 20.0
+    }
+    ```
+  - Response: `BookingAddonDTO`
 
-- **BookingRoom**
-  - APIs for managing booking rooms.
+- **DELETE /api/v1/bookingaddons/{bookingId}/{addonId}**
+  - Description: Delete a booking addon by booking ID and addon ID.
+  - Parameters:
+    - `bookingId` (Path Variable): The ID of the booking.
+    - `addonId` (Path Variable): The ID of the addon.
+  - Response: `204 No Content`
 
-- **Feature**
-  - APIs for managing hotel features.
+## CheckinCheckout
+- **GET /api/v1/checkincheckouts/{id}**
+  - Description: Retrieve a check-in/check-out record by ID.
+  - Parameters:
+    - `id` (Path Variable): The ID of the check-in/check-out record.
+  - Response: `CheckinCheckoutDTO`
+  - Example Response:
+    ```json
+    {
+      "id": 1,
+      "bookingId": 1,
+      "checkinDate": "2024-01-01",
+      "checkoutDate": "2024-01-05",
+      "checkedIn": true,
+      "checkedOut": false
+    }
+    ```
 
-- **Floor**
-  - APIs for managing hotel floors.
+- **POST /api/v1/checkincheckouts**
+  - Description: Create a new check-in/check-out record.
+  - Request Body: `CheckinCheckoutDTO`
+  - Example Request:
+    ```json
+    {
+      "bookingId": 1,
+      "checkinDate": "2024-01-01",
+      "checkoutDate": "2024-01-05",
+      "checkedIn": true,
+      "checkedOut": false
+    }
+    ```
+  - Response: `CheckinCheckoutDTO`
 
-- **RoomClassBedType**
-  - APIs for managing room class bed types.
+- **PUT /api/v1/checkincheckouts/{id}**
+  - Description: Update an existing check-in/check-out record.
+  - Parameters:
+    - `id` (Path Variable): The ID of the check-in/check-out record.
+  - Request Body: `CheckinCheckoutDTO`
+  - Example Request:
+    ```json
+    {
+      "bookingId": 1,
+      "checkinDate": "2024-01-01",
+      "checkoutDate": "2024-01-05",
+      "checkedIn": true,
+      "checkedOut": true
+    }
+    ```
+  - Response: `CheckinCheckoutDTO`
 
-- **RoomClass**
-  - APIs for managing room classes.
+- **DELETE /api/v1/checkincheckouts/{id}**
+  - Description: Delete a check-in/check-out record by ID.
+  - Parameters:
+    - `id` (Path Variable): The ID of the check-in/check-out record.
+  - Response: `204 No Content`
 
-- **RoomClassFeature**
-  - APIs for managing room class features.
 
-- **RoomStatus**
-  - APIs for managing room statuses.
+## Addon
+- **GET /api/v1/addons/{id}**
+  - Description: Retrieve an addon by ID.
+  - Parameters:
+    - `id` (Path Variable): The ID of the addon.
+  - Response: `AddonDTO`
+  - Example Response:
+    ```json
+    {
+      "id": 1,
+      "addonName": "Breakfast",
+      "price": 15.0
+    }
+    ```
 
+- **POST /api/v1/addons**
+  - Description: Create a new addon.
+  - Request Body: `AddonDTO`
+  - Example Request:
+    ```json
+    {
+      "addonName": "Breakfast",
+      "price": 15.0
+    }
+    ```
+  - Response: `AddonDTO`
+
+- **PUT /api/v1/addons/{id}**
+  - Description: Update an existing addon.
+  - Parameters:
+    - `id` (Path Variable): The ID of the addon.
+  - Request Body: `AddonDTO`
+  - Example Request:
+    ```json
+    {
+      "addonName": "Dinner",
+      "price": 20.0
+    }
+    ```
+  - Response: `AddonDTO`
+
+- **DELETE /api/v1/addons/{id}**
+  - Description: Delete an addon by ID.
+  - Parameters:
+    - `id` (Path Variable): The ID of the addon.
+  - Response: `204 No Content`
+    
+## BookingRoom
+- **GET /api/v1/bookingrooms/{bookingId}/{roomId}**
+  - Description: Retrieve a booking room by booking ID and room ID.
+  - Parameters:
+    - `bookingId` (Path Variable): The ID of the booking.
+    - `roomId` (Path Variable): The ID of the room.
+  - Response: `BookingRoomDTO`
+  - Example Response:
+    ```json
+    {
+      "bookingId": 1,
+      "roomId": 101,
+      "checkinDate": "2024-01-01",
+      "checkoutDate": "2024-01-05"
+    }
+    ```
+
+- **POST /api/v1/bookingrooms**
+  - Description: Create a new booking room.
+  - Request Body: `BookingRoomDTO`
+  - Example Request:
+    ```json
+    {
+      "bookingId": 1,
+      "roomId": 101,
+      "checkinDate": "2024-01-01",
+      "checkoutDate": "2024-01-05"
+    }
+    ```
+  - Response: `BookingRoomDTO`
+
+- **PUT /api/v1/bookingrooms/{bookingId}/{roomId}**
+  - Description: Update an existing booking room.
+  - Parameters:
+    - `bookingId` (Path Variable): The ID of the booking.
+    - `roomId` (Path Variable): The ID of the room.
+  - Request Body: `BookingRoomDTO`
+  - Example Request:
+    ```json
+    {
+      "bookingId": 1,
+      "roomId": 101,
+      "checkinDate": "2024-01-02",
+      "checkoutDate": "2024-01-06"
+    }
+    ```
+  - Response: `BookingRoomDTO`
+
+- **DELETE /api/v1/bookingrooms/{bookingId}/{roomId}**
+  - Description: Delete a booking room by booking ID and room ID.
+  - Parameters:
+    - `bookingId` (Path Variable): The ID of the booking.
+    - `roomId` (Path Variable): The ID of the room.
+  - Response: `204 No Content`
+
+## Feature
+- **GET /api/v1/features/{id}**
+  - Description: Retrieve a feature by ID.
+  - Parameters:
+    - `id` (Path Variable): The ID of the feature.
+  - Response: `FeatureDTO`
+  - Example Response:
+    ```json
+    {
+      "id": 1,
+      "featureName": "WiFi"
+    }
+    ```
+
+- **POST /api/v1/features**
+  - Description: Create a new feature.
+  - Request Body: `FeatureDTO`
+  - Example Request:
+    ```json
+    {
+      "featureName": "WiFi"
+    }
+    ```
+  - Response: `FeatureDTO`
+
+- **PUT /api/v1/features/{id}**
+  - Description: Update an existing feature.
+  - Parameters:
+    - `id` (Path Variable): The ID of the feature.
+  - Request Body: `FeatureDTO`
+  - Example Request:
+    ```json
+    {
+      "featureName": "Swimming Pool"
+    }
+    ```
+  - Response: `FeatureDTO`
+
+- **DELETE /api/v1/features/{id}**
+  - Description: Delete a feature by ID.
+  - Parameters:
+    - `id` (Path Variable): The ID of the feature.
+  - Response: `204 No Content`
+
+## Floor
+- **GET /api/v1/floors/{id}**
+  - Description: Retrieve a floor by ID.
+  - Parameters:
+    - `id` (Path Variable): The ID of the floor.
+  - Response: `FloorDTO`
+  - Example Response:
+    ```json
+    {
+      "id": 1,
+      "floorNumber": 2
+    }
+    ```
+
+- **POST /api/v1/floors**
+  - Description: Create a new floor.
+  - Request Body: `FloorDTO`
+  - Example Request:
+    ```json
+    {
+      "floorNumber": 2
+    }
+    ```
+  - Response: `FloorDTO`
+
+- **PUT /api/v1/floors/{id}**
+  - Description: Update an existing floor.
+  - Parameters:
+    - `id` (Path Variable): The ID of the floor.
+  - Request Body: `FloorDTO`
+  - Example Request:
+    ```json
+    {
+      "floorNumber": 3
+    }
+    ```
+  - Response: `FloorDTO`
+
+- **DELETE /api/v1/floors/{id}**
+  - Description: Delete a floor by ID.
+  - Parameters:
+    - `id` (Path Variable): The ID of the floor.
+  - Response: `204 No Content`
+
+## RoomClassBedType
+- **GET /api/v1/roomclassbedtypes/{roomClassId}/{bedTypeId}**
+  - Description: Retrieve a room class bed type by room class ID and bed type ID.
+  - Parameters:
+    - `roomClassId` (Path Variable): The ID of the room class.
+    - `bedTypeId` (Path Variable): The ID of the bed type.
+  - Response: `RoomClassBedTypeDTO`
+  - Example Response:
+    ```json
+    {
+      "roomClassId": 1,
+      "bedTypeId": 2,
+      "numBeds": 2
+    }
+    ```
+
+- **POST /api/v1/roomclassbedtypes**
+  - Description: Create a new room class bed type.
+  - Request Body: `RoomClassBedTypeDTO`
+  - Example Request:
+    ```json
+    {
+      "roomClassId": 1,
+      "bedTypeId": 2,
+      "numBeds": 2
+    }
+    ```
+  - Response: `RoomClassBedTypeDTO`
+
+- **PUT /api/v1/roomclassbedtypes/{roomClassId}/{bedTypeId}**
+  - Description: Update an existing room class bed type.
+  - Parameters:
+    - `roomClassId` (Path Variable): The ID of the room class.
+    - `bedTypeId` (Path Variable): The ID of the bed type.
+  - Request Body: `RoomClassBedTypeDTO`
+  - Example Request:
+    ```json
+    {
+      "roomClassId": 1,
+      "bedTypeId": 2,
+      "numBeds": 3
+    }
+    ```
+  - Response: `RoomClassBedTypeDTO`
+
+- **DELETE /api/v1/roomclassbedtypes/{roomClassId}/{bedTypeId}**
+  - Description: Delete a room class bed type by room class ID and bed type ID.
+  - Parameters:
+    - `roomClassId` (Path Variable): The ID of the room class.
+    - `bedTypeId` (Path Variable): The ID of the bed type.
+  - Response: `204 No Content`
+
+
+## RoomClass
+- **GET /api/v1/roomclasses/{id}**
+  - Description: Retrieve a room class by ID.
+  - Parameters:
+    - `id` (Path Variable): The ID of the room class.
+  - Response: `RoomClassDTO`
+  - Example Response:
+    ```json
+    {
+      "id": 1,
+      "className": "Deluxe"
+    }
+    ```
+
+- **POST /api/v1/roomclasses**
+  - Description: Create a new room class.
+  - Request Body: `RoomClassDTO`
+  - Example Request:
+    ```json
+    {
+      "className": "Deluxe"
+    }
+    ```
+  - Response: `RoomClassDTO`
+
+- **PUT /api/v1/roomclasses/{id}**
+  - Description: Update an existing room class.
+  - Parameters:
+    - `id` (Path Variable): The ID of the room class.
+  - Request Body: `RoomClassDTO`
+  - Example Request:
+    ```json
+    {
+      "className": "Suite"
+    }
+    ```
+  - Response: `RoomClassDTO`
+
+- **DELETE /api/v1/roomclasses/{id}**
+  - Description: Delete a room class by ID.
+  - Parameters:
+    - `id` (Path Variable): The ID of the room class.
+  - Response: `204 No Content`
+
+## RoomClassFeature
+- **GET /api/v1/roomclassfeatures/{roomClassId}/{featureId}**
+  - Description: Retrieve a room class feature by room class ID and feature ID.
+  - Parameters:
+    - `roomClassId` (Path Variable): The ID of the room class.
+    - `featureId` (Path Variable): The ID of the feature.
+  - Response: `RoomClassFeatureDTO`
+  - Example Response:
+    ```json
+    {
+      "roomClassId": 1,
+      "featureId": 2
+    }
+    ```
+
+- **POST /api/v1/roomclassfeatures**
+  - Description: Create a new room class feature.
+  - Request Body: `RoomClassFeatureDTO`
+  - Example Request:
+    ```json
+    {
+      "roomClassId": 1,
+      "featureId": 2
+    }
+    ```
+  - Response: `RoomClassFeatureDTO`
+
+- **PUT /api/v1/roomclassfeatures/{roomClassId}/{featureId}**
+  - Description: Update an existing room class feature.
+  - Parameters:
+    - `roomClassId` (Path Variable): The ID of the room class.
+    - `featureId` (Path Variable): The ID of the feature.
+  - Request Body: `RoomClassFeatureDTO`
+  - Example Request:
+    ```json
+    {
+      "roomClassId": 1,
+      "featureId": 3
+    }
+    ```
+  - Response: `RoomClassFeatureDTO`
+
+- **DELETE /api/v1/roomclassfeatures/{roomClassId}/{featureId}**
+  - Description: Delete a room class feature by room class ID and feature ID.
+  - Parameters:
+    - `roomClassId` (Path Variable): The ID of the room class.
+    - `featureId` (Path Variable): The ID of the feature.
+  - Response: `204 No Content`
+
+## RoomStatus
+- **GET /api/v1/roomstatuses/{id}**
+  - Description: Retrieve a room status by ID.
+  - Parameters:
+    - `id` (Path Variable): The ID of the room status.
+  - Response: `RoomStatusDTO`
+  - Example Response:
+    ```json
+    {
+      "id": 1,
+      "statusName": "Available"
+    }
+    ```
+
+- **POST /api/v1/roomstatuses**
+  - Description: Create a new room status.
+  - Request Body: `RoomStatusDTO`
+  - Example Request:
+    ```json
+    {
+      "statusName": "Available"
+    }
+    ```
+  - Response: `RoomStatusDTO`
+
+- **PUT /api/v1/roomstatuses/{id}**
+  - Description: Update an existing room status.
+  - Parameters:
+    - `id` (Path Variable): The ID of the room status.
+  - Request Body: `RoomStatusDTO`
+  - Example Request:
+    ```json
+    {
+      "statusName": "Occupied"
+    }
+    ```
+  - Response: `RoomStatusDTO`
+
+- **DELETE /api/v1/roomstatuses/{id}**
+  - Description: Delete a room status by ID.
+  - Parameters:
+    - `id` (Path Variable): The ID of the room status.
+  - Response: `204 No Content`
 ## Students
 
 - Basel Abu Hamed 
 
 ## ER Diagram
 
-![ER Diagram](![Untitled (1)](https://github.com/BaselAbuHamed/HotelManagementSystem/assets/107325485/17dcadcb-e3f1-4b7b-8875-324400e45b4a)
-)
+![ER Diagram](https://github.com/BaselAbuHamed/HotelManagementSystem/assets/107325485/17dcadcb-e3f1-4b7b-8875-324400e45b4a)
 
 ## Building and Running the Application
 
