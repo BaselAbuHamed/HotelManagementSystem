@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:13
+    container_name: hotel_management_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1232002
+      POSTGRES_DB: hotel_management_system
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - hotel_management_network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hotel_management_app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/hotel_management_system
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1232002
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      JWT_SECRET: 1232002
+      JWT_EXPIRATION: 3600000
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    networks:
+      - hotel_management_network
+
+networks:
+  hotel_management_network:
+    driver: bridge
+
+volumes:
+  db_data:

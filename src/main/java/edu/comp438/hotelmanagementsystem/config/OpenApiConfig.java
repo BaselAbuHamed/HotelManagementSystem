@@ -18,8 +18,7 @@ import org.springframework.context.annotation.Configuration;
                 description = "API documentation for the Hotel Management System",
                 contact = @Contact(
                         name = "Support",
-                        email = "support@example.com",
-                        url = "https://example.com"
+                        email = "basel76ziyad24@gmail.com"
                 )
         ),
         servers = {

@@ -839,5 +839,4 @@ From this project, we learned:
 - **Security**: How to implement JWT-based authentication and authorization.
 - **API Documentation**: How to document APIs using SpringDoc OpenAPI and Swagger UI.
 - **Docker**: How to containerize a Spring Boot application using Docker.
-- **Team Collaboration**: Working effectively as a team to complete the project.
 
