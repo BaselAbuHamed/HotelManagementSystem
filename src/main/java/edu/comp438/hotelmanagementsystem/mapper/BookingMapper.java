@@ -1,27 +1,36 @@
 package edu.comp438.hotelmanagementsystem.mapper;
 
 import edu.comp438.hotelmanagementsystem.dto.BookingDTO;
-import edu.comp438.hotelmanagementsystem.entity.Booking;
-import edu.comp438.hotelmanagementsystem.entity.Customer;
-import edu.comp438.hotelmanagementsystem.entity.PaymentStatus;
+import edu.comp438.hotelmanagementsystem.entity.*;
 import edu.comp438.hotelmanagementsystem.repository.CustomerRepository;
 import edu.comp438.hotelmanagementsystem.repository.PaymentStatusRepository;
+import edu.comp438.hotelmanagementsystem.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class BookingMapper {
 
     private final CustomerRepository customerRepository;
     private final PaymentStatusRepository paymentStatusRepository;
+    private final RoomRepository roomRepository;
 
     @Autowired
-    public BookingMapper(CustomerRepository customerRepository, PaymentStatusRepository paymentStatusRepository) {
+    public BookingMapper(CustomerRepository customerRepository, PaymentStatusRepository paymentStatusRepository, RoomRepository roomRepository) {
         this.customerRepository = customerRepository;
         this.paymentStatusRepository = paymentStatusRepository;
+        this.roomRepository = roomRepository;
     }
 
     public BookingDTO toDto(Booking booking) {
+
+        List<Long> roomIds = booking.getBookingRooms().stream()
+                .map(bookingRoom -> bookingRoom.getRoom().getId())
+                .collect(Collectors.toList());
+
         return new BookingDTO(
                 booking.getId(),
                 booking.getCustomer().getId(),
@@ -30,7 +39,8 @@ public class BookingMapper {
                 booking.getNumAdults(),
                 booking.getNumChildren(),
                 booking.getBookingAmount(),
-                booking.getPaymentStatus().getId()
+                booking.getPaymentStatus().getId(),
+                roomIds
         );
     }
 
@@ -51,6 +61,15 @@ public class BookingMapper {
         PaymentStatus paymentStatus = paymentStatusRepository.findById(bookingDTO.getPaymentStatusId())
                 .orElseThrow(() -> new RuntimeException("Payment status not found with id: " + bookingDTO.getPaymentStatusId()));
         booking.setPaymentStatus(paymentStatus);
+
+        List<Room> rooms = bookingDTO.getRoomIds().stream()
+                .map(roomId -> roomRepository.findById(roomId)
+                        .orElseThrow(() -> new RuntimeException("Room not found with id: " + roomId)))
+                .toList();
+
+        booking.setBookingRooms(rooms.stream()
+                .map(room -> new BookingRoom(new BookingRoomId(booking.getId(), room.getId()), booking, room))
+                .collect(Collectors.toSet()));
 
         return booking;
     }

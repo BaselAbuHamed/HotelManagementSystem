@@ -5,6 +5,7 @@ import edu.comp438.hotelmanagementsystem.dto.BookingDTO;
 import edu.comp438.hotelmanagementsystem.entity.CheckinCheckout;
 import edu.comp438.hotelmanagementsystem.controller.CheckinCheckoutController;
 import edu.comp438.hotelmanagementsystem.mapper.BookingMapper;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @Component
-public class CheckinCheckoutModelAssembler implements RepresentationModelAssembler<CheckinCheckout, CheckinCheckoutDTO> {
+public class CheckinCheckoutModelAssembler implements RepresentationModelAssembler<CheckinCheckout, EntityModel< CheckinCheckoutDTO> >{
 
     private final BookingMapper bookingMapper;
 
@@ -22,7 +23,7 @@ public class CheckinCheckoutModelAssembler implements RepresentationModelAssembl
 
     @Override
     @NonNull
-    public CheckinCheckoutDTO toModel(@NonNull CheckinCheckout checkinCheckout) {
+    public EntityModel< CheckinCheckoutDTO> toModel(@NonNull CheckinCheckout checkinCheckout) {
         BookingDTO bookingDTO = bookingMapper.toDto(checkinCheckout.getBooking());
         CheckinCheckoutDTO checkinCheckoutDTO = new CheckinCheckoutDTO(
                 checkinCheckout.getId(),
@@ -33,7 +34,8 @@ public class CheckinCheckoutModelAssembler implements RepresentationModelAssembl
                 checkinCheckout.getCheckedOut()
         );
 
-        checkinCheckoutDTO.add(linkTo(methodOn(CheckinCheckoutController.class).getCheckinCheckoutById(checkinCheckout.getId())).withSelfRel());
-        return checkinCheckoutDTO;
+        EntityModel< CheckinCheckoutDTO> checkinCheckoutEntityModel = EntityModel.of(checkinCheckoutDTO);
+        checkinCheckoutEntityModel.add(linkTo(methodOn(CheckinCheckoutController.class).getCheckinCheckoutById(checkinCheckout.getId())).withSelfRel());
+        return checkinCheckoutEntityModel;
     }
 }

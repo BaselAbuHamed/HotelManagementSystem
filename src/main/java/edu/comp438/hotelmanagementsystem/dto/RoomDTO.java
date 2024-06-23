@@ -9,7 +9,7 @@ import org.springframework.hateoas.RepresentationModel;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoomDTO extends RepresentationModel<RoomDTO> {
+public class RoomDTO {
 
     private Long id;
 

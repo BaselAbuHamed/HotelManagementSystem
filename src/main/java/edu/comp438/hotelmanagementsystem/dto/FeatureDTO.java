@@ -8,7 +8,7 @@ import org.springframework.hateoas.RepresentationModel;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FeatureDTO extends RepresentationModel<FeatureDTO> {
+public class FeatureDTO {
 
     private Long id;
 

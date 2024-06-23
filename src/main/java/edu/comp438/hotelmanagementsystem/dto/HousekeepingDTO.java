@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class HousekeepingDTO extends RepresentationModel<HousekeepingDTO> {
+public class HousekeepingDTO {
 
     private Long id;
 

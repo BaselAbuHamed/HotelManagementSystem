@@ -1,6 +1,8 @@
 package edu.comp438.hotelmanagementsystem.service;
 
 import edu.comp438.hotelmanagementsystem.dto.UserDTO;
+import edu.comp438.hotelmanagementsystem.entity.User;
+
 import java.util.List;
 
 public interface UserService {
@@ -10,4 +12,5 @@ public interface UserService {
     void deleteUser(Long id);
     List<UserDTO> getAllUsers();
     UserDTO save(UserDTO userDTO);
+    User findByUsername(String username);
 }

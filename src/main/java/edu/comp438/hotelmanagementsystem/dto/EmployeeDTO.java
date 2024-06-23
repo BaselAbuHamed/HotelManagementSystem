@@ -9,7 +9,7 @@ import jakarta.validation.constraints.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeDTO extends RepresentationModel<EmployeeDTO> {
+public class EmployeeDTO {
 
     private Long id;
 

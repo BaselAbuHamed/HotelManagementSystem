@@ -11,7 +11,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO extends RepresentationModel<UserDTO> {
+public class UserDTO {
 
     private Long id;
 

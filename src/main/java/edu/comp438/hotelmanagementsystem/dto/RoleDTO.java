@@ -8,7 +8,7 @@ import org.springframework.hateoas.RepresentationModel;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoleDTO extends RepresentationModel<RoleDTO> {
+public class RoleDTO {
 
     @NotNull(message = "Role ID is mandatory")
     private Long id;

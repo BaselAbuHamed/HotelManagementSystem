@@ -8,7 +8,7 @@ import org.springframework.hateoas.RepresentationModel;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BedTypeDTO extends RepresentationModel<BedTypeDTO> {
+public class BedTypeDTO {
 
     private Long id;
 

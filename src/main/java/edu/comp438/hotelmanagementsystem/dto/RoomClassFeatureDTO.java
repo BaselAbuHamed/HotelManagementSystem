@@ -8,7 +8,7 @@ import org.springframework.hateoas.RepresentationModel;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoomClassFeatureDTO extends RepresentationModel<RoomClassFeatureDTO> {
+public class RoomClassFeatureDTO {
 
     @NotNull(message = "Room class ID is mandatory")
     private Long roomClassId;

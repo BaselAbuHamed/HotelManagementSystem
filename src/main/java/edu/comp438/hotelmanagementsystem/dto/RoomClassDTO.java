@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoomClassDTO extends RepresentationModel<RoomClassDTO> {
+public class RoomClassDTO {
 
     private Long id;
 

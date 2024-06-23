@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "booking")
@@ -48,4 +49,7 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "payment_status_id", nullable = false)
     private PaymentStatus paymentStatus;
+
+    @OneToMany(mappedBy = "booking")
+    private Set<BookingRoom> bookingRooms;
 }

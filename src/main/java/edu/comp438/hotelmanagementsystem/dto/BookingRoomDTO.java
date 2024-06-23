@@ -8,7 +8,7 @@ import org.springframework.hateoas.RepresentationModel;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookingRoomDTO extends RepresentationModel<BookingRoomDTO> {
+public class BookingRoomDTO {
 
     @NotNull(message = "Booking ID is mandatory")
     private Long bookingId;

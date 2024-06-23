@@ -8,7 +8,7 @@ import org.springframework.hateoas.RepresentationModel;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentStatusDTO extends RepresentationModel<PaymentStatusDTO> {
+public class PaymentStatusDTO {
 
     private Long id;
 

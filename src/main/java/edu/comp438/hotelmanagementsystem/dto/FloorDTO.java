@@ -8,7 +8,7 @@ import org.springframework.hateoas.RepresentationModel;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FloorDTO extends RepresentationModel<FloorDTO> {
+public class FloorDTO {
 
     private Long id;
 

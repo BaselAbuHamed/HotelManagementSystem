@@ -16,7 +16,7 @@ server:
   port: 8080
 
 jwt:
-  secret: 1232002
+  secret: 1232002jgdfslkgjgjldfskjgfdskljsakldfjslajfweiojfl
   expiration: 3600000
 
 springdoc:

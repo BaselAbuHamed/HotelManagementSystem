@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CheckinCheckoutDTO extends RepresentationModel<CheckinCheckoutDTO> {
+public class CheckinCheckoutDTO {
 
     private Long id;
 

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class InvoiceDTO extends RepresentationModel<InvoiceDTO> {
+public class InvoiceDTO {
 
     private Long id;
 
